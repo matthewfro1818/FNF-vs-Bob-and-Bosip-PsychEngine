@@ -248,6 +248,62 @@ class PlayState extends MusicBeatState
 	public var endCallback:Void->Void = null;
 
 	public static var nextReloadAll:Bool = false;
+	
+	var faker:Character;
+	var blackness:FlxSprite;
+
+	var pc:Character;
+
+	var areYouReady:FlxTypedGroup<FlxSprite>;
+
+	var theEntireFuckingStage:FlxTypedGroup<FlxSprite>;
+
+	var mini:FlxSprite;
+	var mordecai:FlxSprite;
+	var thirdBop:FlxSprite;
+	public static var didTheSex:Bool = false;
+
+	public static var effectSONG:SwagSong;
+	private var effectNotes:FlxTypedGroup<Note>;
+
+	public static var dad2SONG:SwagSong;
+	private var dad2Notes:FlxTypedGroup<Note>;
+	var healthColorSwitch1:Bool = false;
+	var healthColorSwitch2:Bool = false;
+	var lightsTimer:Array<Int> = [200, 700];
+
+	var dadTrail:FlxTrail;
+
+	var splitMode:Bool = false;
+	var splitSoftMode:Bool = false;
+	var splitCamMode:Bool = false;
+	var splitExtraZoom:Bool = false;
+	var coolerText:Bool = false;
+
+	var songSpeedMultiplier:Float = 0;
+	
+	var grpDieStage:FlxTypedGroup<FlxSprite>;
+	var grpSlaughtStage:FlxTypedGroup<FlxSprite>;
+
+	var resyncingVocals:Bool = true;
+
+	public static var obsIsOpen:Bool = false;
+
+	var camtween:FlxTween;
+	var hellbg:FlxSprite;
+	var hellcrab:FlxSprite;
+	var crabbg:FlxSprite;
+	var blackscreentra:FlxSprite;
+	var ass:FlxSprite = new FlxSprite(0,0);
+	var assbf:FlxSprite = new FlxSprite(0,0);
+	var BW:FlxTypedGroup<FlxSprite>;
+	var NBW:FlxTypedGroup<FlxSprite>;
+	public static var BWE:Bool = false;
+
+	var phillyCityLights:FlxTypedGroup<FlxSprite>;
+	var coolGlowyLights:FlxTypedGroup<FlxSprite>;
+	var coolGlowyLightsMirror:FlxTypedGroup<FlxSprite>;
+
 	override public function create()
 	{
 		//trace('Playback Rate: ' + playbackRate);
