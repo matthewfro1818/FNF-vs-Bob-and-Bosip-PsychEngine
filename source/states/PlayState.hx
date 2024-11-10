@@ -272,8 +272,6 @@ class PlayState extends MusicBeatState
 	var healthColorSwitch2:Bool = false;
 	var lightsTimer:Array<Int> = [200, 700];
 
-	var dadTrail:FlxTrail;
-
 	var splitMode:Bool = false;
 	var splitSoftMode:Bool = false;
 	var splitCamMode:Bool = false;
