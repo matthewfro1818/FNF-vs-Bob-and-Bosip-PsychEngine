@@ -49,9 +49,6 @@ class Character extends FlxSprite
 	public var debugMode:Bool = false;
 	public var extraData:Map<String, Dynamic> = new Map<String, Dynamic>();
 
-	public var isPlayer:Bool = false;
-	public var curCharacter:String = DEFAULT_CHARACTER;
-
 	public var holdTimer:Float = 0;
 	public var heyTimer:Float = 0;
 	public var specialAnim:Bool = false;
@@ -74,6 +71,17 @@ class Character extends FlxSprite
 	public var hasMissAnimations:Bool = false;
 	public var vocalsFile:String = '';
 
+	public var animOffsets:Map<String, Array<Dynamic>>;
+	public var debugMode:Bool = false;
+	public var menuMode:Bool = false;
+	public var noteSkin:String = 'normal';
+
+	public var isPlayer:Bool = false;
+	public var curCharacter:String = 'bf';
+
+	public var holdTimer:Float = 0;
+	public var iconColor:String = "FF50a5eb";
+	
 	//Used on Character Editor
 	public var imageFile:String = '';
 	public var jsonScale:Float = 1;
