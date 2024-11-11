@@ -1,16 +1,18 @@
 package objects;
+import flixel.FlxSprite;
 
 class HealthIcon extends FlxSprite
 {
+	/**
+	 * Used for FreeplayState! If you use it elsewhere, prob gonna annoying
+	 */
 	public var sprTracker:FlxSprite;
-	private var isPlayer:Bool = false;
-	private var char:String = '';
-
-	public function new(char:String = 'face', isPlayer:Bool = false, ?allowGPU:Bool = true)
+	public var char:String;
+	public function new(char:String = 'bf', isPlayer:Bool = false)
 	{
 		super();
-		this.isPlayer = isPlayer;
-		changeIcon(char, allowGPU);
+		antialiasing = true;
+		this.char = char;
 		switch (char) {
 			case 'pixel-amor':
 				loadGraphic(Paths.image('icons/pixel'), true, 150, 150);
@@ -146,6 +148,55 @@ class HealthIcon extends FlxSprite
 			case 'bf-sans-ex':
 				loadGraphic(Paths.image('icons/sans'), true, 150, 150);
 				animation.add('bf-sans-ex', [0, 1, 2], 0, false, isPlayer);
+			
+			default:
+				loadGraphic(Paths.image('iconGrid'), true, 150, 150);
+
+				animation.add('bf-sans', [0, 1, 35], 0, false, isPlayer);
+				animation.add('bf', [0, 1, 35], 0, false, isPlayer);
+				animation.add('bf-ex', [0, 1, 35], 0, false, isPlayer);
+				animation.add('bf-ex-new', [0, 1, 35], 0, false, isPlayer);
+				animation.add('bf-night-ex', [0, 1, 35], 0, false, isPlayer);
+				animation.add('bf-night', [0, 1, 35], 0, false, isPlayer);
+				animation.add('bf-car', [0, 1], 0, false, isPlayer);
+				animation.add('bf-christmas', [0, 1], 0, false, isPlayer);
+				animation.add('bf-pixel', [21, 21], 0, false, isPlayer);
+				animation.add('spooky', [2, 3], 0, false, isPlayer);
+				animation.add('pico', [4, 5], 0, false, isPlayer);
+				animation.add('mom', [6, 7], 0, false, isPlayer);
+				animation.add('mom-car', [6, 7], 0, false, isPlayer);
+				animation.add('tankman', [8, 9], 0, false, isPlayer);
+				animation.add('face', [10, 11], 0, false, isPlayer);
+				animation.add('dad', [12, 13], 0, false, isPlayer);
+				animation.add('senpai', [22, 22], 0, false, isPlayer);
+				animation.add('senpai-angry', [22, 22], 0, false, isPlayer);
+				animation.add('spirit', [23, 23], 0, false, isPlayer);
+				animation.add('bf-old', [14, 15], 0, false, isPlayer);
+				animation.add('gf', [16, 33, 34], 0, false, isPlayer);
+				animation.add('gf-ex', [16, 33, 34], 0, false, isPlayer);
+				animation.add('gf-night-ex', [16, 33, 34], 0, false, isPlayer);
+				animation.add('gf-christmas', [16], 0, false, isPlayer);
+				animation.add('gf-pixel', [16], 0, false, isPlayer);
+				animation.add('parents-christmas', [17, 18], 0, false, isPlayer);
+				animation.add('monster', [19, 20], 0, false, isPlayer);
+				animation.add('monster-christmas', [19, 20], 0, false, isPlayer);
+				animation.add('bob', [27, 29, 28], 0, false, isPlayer);
+				animation.add('bf-worriedbob', [27, 29, 28], 0, false, isPlayer);
+				animation.add('bob-ex', [27, 29, 28], 0, false, isPlayer);
+				animation.add('bosip', [30, 32, 31], 0, false, isPlayer);
+				animation.add('bosip-ex', [30, 32, 31], 0, false, isPlayer);
+				animation.add('amor', [24, 25, 26], 0, false, isPlayer);
+				animation.add('amor-ex', [24, 25, 26], 0, false, isPlayer);
+				animation.add('pc', [24, 25, 26], 0, false, isPlayer);
+				animation.add('cj', [24, 25, 26], 0, false, isPlayer);
+				animation.add('bobal', [24, 25, 26], 0, false, isPlayer);
+				
+
+				switch(char)
+				{
+					case 'bf-pixel' | 'senpai' | 'senpai-angry' | 'spirit' | 'gf-pixel':
+						antialiasing = false;
+				}
 
 		}
 		animation.play(char);
@@ -157,46 +208,6 @@ class HealthIcon extends FlxSprite
 		super.update(elapsed);
 
 		if (sprTracker != null)
-			setPosition(sprTracker.x + sprTracker.width + 12, sprTracker.y - 30);
-	}
-
-	private var iconOffsets:Array<Float> = [0, 0];
-	public function changeIcon(char:String, ?allowGPU:Bool = true) {
-		if(this.char != char) {
-			var name:String = 'icons/' + char;
-			if(!Paths.fileExists('images/' + name + '.png', IMAGE)) name = 'icons/icon-' + char; //Older versions of psych engine's support
-			if(!Paths.fileExists('images/' + name + '.png', IMAGE)) name = 'icons/icon-face'; //Prevents crash from missing icon
-			
-			var graphic = Paths.image(name, allowGPU);
-			var iSize:Float = Math.round(graphic.width / graphic.height);
-			loadGraphic(graphic, true, Math.floor(graphic.width / iSize), Math.floor(graphic.height));
-			iconOffsets[0] = (width - 150) / iSize;
-			iconOffsets[1] = (height - 150) / iSize;
-			updateHitbox();
-
-			animation.add(char, [for(i in 0...frames.frames.length) i], 0, false, isPlayer);
-			animation.play(char);
-			this.char = char;
-
-			if(char.endsWith('-pixel'))
-				antialiasing = false;
-			else
-				antialiasing = ClientPrefs.data.antialiasing;
-		}
-	}
-
-	public var autoAdjustOffset:Bool = true;
-	override function updateHitbox()
-	{
-		super.updateHitbox();
-		if(autoAdjustOffset)
-		{
-			offset.x = iconOffsets[0];
-			offset.y = iconOffsets[1];
-		}
-	}
-
-	public function getCharacter():String {
-		return char;
+			setPosition(sprTracker.x + sprTracker.width + 10, sprTracker.y - 30);
 	}
 }
