@@ -40,9 +40,6 @@ typedef AnimArray = {
 
 class Character extends FlxSprite
 {
-	/**
-	 * In case a character is missing, it will use this on its place
-	**/
 	public static final DEFAULT_CHARACTER:String = 'bf';
 
 	public var extraData:Map<String, Dynamic> = new Map<String, Dynamic>();
