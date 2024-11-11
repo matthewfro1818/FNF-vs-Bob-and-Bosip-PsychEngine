@@ -98,7 +98,8 @@ class Character extends FlxSprite
 		animOffsets = new Map<String, Array<Dynamic>>();
 		this.isPlayer = isPlayer;
 		changeCharacter(character);
-		
+		var tex:FlxAtlasFrames;
+
 		switch(curCharacter)
 		{
 			case 'bf-sans':
